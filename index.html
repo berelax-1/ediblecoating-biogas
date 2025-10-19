@@ -3,14 +3,14 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>EdibleCoat & Biogas — Aplikasi</title>
+  <title>EdibleCoat & Biogas — Demo</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <header class="site-header">
     <div class="brand">EdibleCoat & Biogas</div>
     <nav class="top-nav" aria-label="Main navigation">
-      <button class="nav-btn active" data-tab="edu">Edukasi</button>
+      <button class="nav-btn active" data-tab="edu" aria-pressed="true">Edukasi</button>
       <button class="nav-btn" data-tab="step">Step-by-step</button>
       <button class="nav-btn" data-tab="proc">Input & Proses</button>
       <button class="nav-btn" data-tab="hasil">Hasil</button>
@@ -19,39 +19,45 @@
   </header>
 
   <main class="container">
+    <!-- EDU -->
     <section class="panel card" id="panel-edu" data-panel>
-      <h2>Fitur 1 — Edukasi: Apa itu Edible Coating?</h2>
-      <p class="muted">Edible coating adalah lapisan tipis yang aman dimakan... (ringkasan).</p>
-      <h3>Manfaat</h3>
+      <h1>Fitur 1 — Edukasi: Apa itu Edible Coating?</h1>
+      <p class="muted">Edible coating: lapisan tipis yang aman dimakan, diterapkan ke permukaan makanan untuk memperpanjang umur simpan, menurunkan kehilangan air, dan mengurangi kontaminasi.</p>
+      <h2>Manfaat</h2>
       <ul>
-        <li>Mengurangi kehilangan air</li>
-        <li>Menunda oksidasi</li>
+        <li>Mengurangi kehilangan massa air</li>
+        <li>Menghambat oksidasi</li>
         <li>Meningkatkan umur simpan</li>
+        <li>Alternatif ramah lingkungan</li>
       </ul>
+      <h2>Bahan umum</h2>
+      <p class="small">Pektin, kitosan, protein (whey), wax makanan, plastisizer (gliserol), dan aditif antimikroba/antioksidan.</p>
     </section>
 
+    <!-- STEP-BY-STEP -->
     <section class="panel card" id="panel-step" data-panel hidden>
-      <h2>Fitur 2 — Langkah demi langkah</h2>
-      <div class="steps">
-        <button class="step-btn active" data-step="1">1. Pilih bahan</button>
-        <button class="step-btn" data-step="2">2. Formulasi</button>
-        <button class="step-btn" data-step="3">3. Persiapan</button>
-        <button class="step-btn" data-step="4">4. Aplikasi</button>
-        <button class="step-btn" data-step="5">5. Pengujian</button>
+      <h1>Fitur 2 — Langkah demi langkah</h1>
+      <div class="steps" role="tablist" aria-label="Langkah edible coating">
+        <button class="step-btn active" data-step="1" role="tab" aria-selected="true">1. Pilih bahan</button>
+        <button class="step-btn" data-step="2" role="tab">2. Formulasi</button>
+        <button class="step-btn" data-step="3" role="tab">3. Persiapan</button>
+        <button class="step-btn" data-step="4" role="tab">4. Aplikasi</button>
+        <button class="step-btn" data-step="5" role="tab">5. Pengujian</button>
       </div>
-      <div class="step-content" id="step-content">
-        <div class="step-panel" data-step="1">Pilih bahan: pektin, kitosan, whey, wax.</div>
-        <div class="step-panel" data-step="2" hidden>Formulasi: tentukan konsentrasi, plastisizer, pelarut.</div>
-        <div class="step-panel" data-step="3" hidden>Persiapan: sterilisasi, homogenisasi.</div>
-        <div class="step-panel" data-step="4" hidden>Aplikasi: spray, dip, brush—kontrol ketebalan.</div>
-        <div class="step-panel" data-step="5" hidden>Pengujian: uji kehilangan massa, mikrobiologi, sensoris.</div>
+      <div class="step-content" id="step-content" aria-live="polite">
+        <div class="step-panel" data-step="1">Pilih bahan: pektin, kitosan, whey protein, wax. Pertimbangkan sifat permeabilitas dan keamanan pangan.</div>
+        <div class="step-panel" data-step="2" hidden>Formulasi: tentukan persentase, plastisizer (gliserol 0.5–2% b/b), pelarut (air atau campuran), dan homogenisasi.</div>
+        <div class="step-panel" data-step="3" hidden>Persiapan: bersihkan/sterilkan permukaan, siapkan larutan, kontrol suhu.</div>
+        <div class="step-panel" data-step="4" hidden>Aplikasi: spray, dip, brush. Kontrol volume, jarak, dan ketebalan lapisan; keringkan sesuai metode.</div>
+        <div class="step-panel" data-step="5" hidden>Pengujian: uji kehilangan massa, uji mikrobiologi, dan uji sensorik untuk keamanan dan kualitas.</div>
       </div>
     </section>
 
+    <!-- INPUT & PROCESS -->
     <section class="panel card" id="panel-proc" data-panel hidden>
-      <h2>Fitur 3 — Input & Proses</h2>
-      <form id="sprayForm" autocomplete="off">
-        <label>Objek yang disemprot</label>
+      <h1>Fitur 3 — Input & Proses</h1>
+      <form id="sprayForm" autocomplete="off" novalidate>
+        <label for="objek">Objek yang disemprot</label>
         <select id="objek" required>
           <option value="apel">Apel</option>
           <option value="pisang">Pisang</option>
@@ -59,20 +65,20 @@
           <option value="keju">Keju</option>
         </select>
 
-        <label>Jenis Coating</label>
+        <label for="coating">Jenis Coating</label>
         <select id="coating" required>
           <option value="pektin">Pektin</option>
           <option value="kitosan">Kitosan</option>
           <option value="wax">Wax Food Grade</option>
         </select>
 
-        <label>Konsentrasi larutan (%)</label>
-        <input id="konc" type="number" step="0.1" min="0.1" value="1" placeholder="Contoh: 1.0" required>
+        <label for="konc">Konsentrasi larutan (%)</label>
+        <input id="konc" type="number" step="0.1" min="0.1" value="1.0" placeholder="Contoh: 1.0" required>
 
-        <label>Volume semprot per item (mL)</label>
-        <input id="volume" type="number" step="0.1" min="0.1" value="5" placeholder="Contoh: 5" required>
+        <label for="volume">Volume semprot per item (mL)</label>
+        <input id="volume" type="number" step="0.1" min="0.1" value="5" placeholder="Contoh: 5.0" required>
 
-        <label>Cara aplikasi</label>
+        <label for="method">Cara aplikasi</label>
         <select id="method" required>
           <option value="spray">Spray</option>
           <option value="dip">Dip</option>
@@ -85,31 +91,31 @@
         </div>
       </form>
 
-      <div class="result-block" id="processLog">Belum ada proses.</div>
+      <div class="result-block" id="processLog" aria-live="polite">Belum ada proses.</div>
     </section>
 
+    <!-- HASIL -->
     <section class="panel card" id="panel-hasil" data-panel hidden>
-      <h2>Fitur 4 — Hasil</h2>
-      <div id="hasilArea" class="result-block">
-        Hasil simulasi akan muncul di sini.
-      </div>
+      <h1>Fitur 4 — Hasil</h1>
+      <div id="hasilArea" class="result-block">Hasil simulasi akan muncul di sini.</div>
     </section>
 
+    <!-- BIOGAS -->
     <section class="panel card" id="panel-biogas" data-panel hidden>
-      <h2>Fitur 5 — Estimator Mesin Biogas</h2>
-      <form id="biogasForm" autocomplete="off">
-        <label>Jenis limbah</label>
+      <h1>Fitur 5 — Estimator Mesin Biogas</h1>
+      <form id="biogasForm" autocomplete="off" novalidate>
+        <label for="wasteType">Jenis limbah</label>
         <select id="wasteType">
           <option value="food">Sisa Makanan</option>
           <option value="manure">Kotoran Ternak</option>
           <option value="green">Limbah Hijau</option>
         </select>
 
-        <label>Berat input (kg)</label>
-        <input id="wasteKg" type="number" step="0.1" min="0.1" value="10" required>
+        <label for="wasteKg">Berat input (kg)</label>
+        <input id="wasteKg" type="number" step="0.1" min="0.1" value="10">
 
-        <label>Waktu retensi (hari)</label>
-        <input id="retention" type="number" step="1" min="1" value="30" required>
+        <label for="retention">Waktu retensi (hari)</label>
+        <input id="retention" type="number" step="1" min="1" value="30">
 
         <div class="form-actions">
           <button type="button" id="calcBiogas" class="btn primary">Estimasi Biogas</button>
@@ -117,28 +123,28 @@
         </div>
       </form>
 
-      <div class="result-block" id="biogasResult">Belum dihitung.</div>
+      <div class="result-block" id="biogasResult" aria-live="polite">Belum dihitung.</div>
     </section>
 
-    <aside class="card sidebar">
-      <h3>Tools</h3>
-      <button id="exportBtn" class="btn">Export JSON</button>
-      <button id="clearBtn" class="btn">Clear Results</button>
-
-      <h4>Pengembangan Lanjutan</h4>
+    <!-- SIDEBAR -->
+    <aside class="card sidebar" aria-label="Sidebar tools">
+      <h2>Tools</h2>
+      <div style="display:flex; gap:8px; margin-bottom:8px;">
+        <button id="exportBtn" class="btn">Export JSON</button>
+        <button id="clearBtn" class="btn">Clear Results</button>
+      </div>
+      <h3>Pengembangan Lanjutan</h3>
       <ul>
-        <li>Database formulasi (simpan / load)</li>
-        <li>Upload foto buah + deteksi area</li>
-        <li>Integrasi IoT ke nozzle semprot</li>
-        <li>Model reaktor biogas dan dashboard monitoring</li>
+        <li>Simpan formulasi ke database</li>
+        <li>Upload foto buah untuk analisis area</li>
+        <li>Integrasi IoT (nozzle otomatis)</li>
+        <li>Model reaktor biogas & monitoring</li>
       </ul>
     </aside>
   </main>
 
-  <footer class="site-footer">
-    Versi prototipe — simpan file lalu buka di browser. Butuh konversi ke React/Backend? bilang ya.
-  </footer>
+  <footer class="site-footer">Versi prototipe — simpan file lalu buka di browser. Untuk publikasi gunakan GitHub Pages atau Netlify.</footer>
 
-  <script src="app.js"></script>
+  <script src="app.js" defer></script>
 </body>
 </html>
