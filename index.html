@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>EdibleCoat & Biogas — Aplikasi</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="brand">EdibleCoat & Biogas</div>
+    <nav class="top-nav" aria-label="Main navigation">
+      <button class="nav-btn active" data-tab="edu">Edukasi</button>
+      <button class="nav-btn" data-tab="step">Step-by-step</button>
+      <button class="nav-btn" data-tab="proc">Input & Proses</button>
+      <button class="nav-btn" data-tab="hasil">Hasil</button>
+      <button class="nav-btn" data-tab="biogas">Biogas</button>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="panel card" id="panel-edu" data-panel>
+      <h2>Fitur 1 — Edukasi: Apa itu Edible Coating?</h2>
+      <p class="muted">Edible coating adalah lapisan tipis yang aman dimakan... (ringkasan).</p>
+      <h3>Manfaat</h3>
+      <ul>
+        <li>Mengurangi kehilangan air</li>
+        <li>Menunda oksidasi</li>
+        <li>Meningkatkan umur simpan</li>
+      </ul>
+    </section>
+
+    <section class="panel card" id="panel-step" data-panel hidden>
+      <h2>Fitur 2 — Langkah demi langkah</h2>
+      <div class="steps">
+        <button class="step-btn active" data-step="1">1. Pilih bahan</button>
+        <button class="step-btn" data-step="2">2. Formulasi</button>
+        <button class="step-btn" data-step="3">3. Persiapan</button>
+        <button class="step-btn" data-step="4">4. Aplikasi</button>
+        <button class="step-btn" data-step="5">5. Pengujian</button>
+      </div>
+      <div class="step-content" id="step-content">
+        <div class="step-panel" data-step="1">Pilih bahan: pektin, kitosan, whey, wax.</div>
+        <div class="step-panel" data-step="2" hidden>Formulasi: tentukan konsentrasi, plastisizer, pelarut.</div>
+        <div class="step-panel" data-step="3" hidden>Persiapan: sterilisasi, homogenisasi.</div>
+        <div class="step-panel" data-step="4" hidden>Aplikasi: spray, dip, brush—kontrol ketebalan.</div>
+        <div class="step-panel" data-step="5" hidden>Pengujian: uji kehilangan massa, mikrobiologi, sensoris.</div>
+      </div>
+    </section>
+
+    <section class="panel card" id="panel-proc" data-panel hidden>
+      <h2>Fitur 3 — Input & Proses</h2>
+      <form id="sprayForm" autocomplete="off">
+        <label>Objek yang disemprot</label>
+        <select id="objek" required>
+          <option value="apel">Apel</option>
+          <option value="pisang">Pisang</option>
+          <option value="tomat">Tomat</option>
+          <option value="keju">Keju</option>
+        </select>
+
+        <label>Jenis Coating</label>
+        <select id="coating" required>
+          <option value="pektin">Pektin</option>
+          <option value="kitosan">Kitosan</option>
+          <option value="wax">Wax Food Grade</option>
+        </select>
+
+        <label>Konsentrasi larutan (%)</label>
+        <input id="konc" type="number" step="0.1" min="0.1" value="1" placeholder="Contoh: 1.0" required>
+
+        <label>Volume semprot per item (mL)</label>
+        <input id="volume" type="number" step="0.1" min="0.1" value="5" placeholder="Contoh: 5" required>
+
+        <label>Cara aplikasi</label>
+        <select id="method" required>
+          <option value="spray">Spray</option>
+          <option value="dip">Dip</option>
+          <option value="brush">Brush</option>
+        </select>
+
+        <div class="form-actions">
+          <button type="button" id="startProcess" class="btn primary">Proses Simulasi</button>
+          <button type="reset" class="btn">Reset</button>
+        </div>
+      </form>
+
+      <div class="result-block" id="processLog">Belum ada proses.</div>
+    </section>
+
+    <section class="panel card" id="panel-hasil" data-panel hidden>
+      <h2>Fitur 4 — Hasil</h2>
+      <div id="hasilArea" class="result-block">
+        Hasil simulasi akan muncul di sini.
+      </div>
+    </section>
+
+    <section class="panel card" id="panel-biogas" data-panel hidden>
+      <h2>Fitur 5 — Estimator Mesin Biogas</h2>
+      <form id="biogasForm" autocomplete="off">
+        <label>Jenis limbah</label>
+        <select id="wasteType">
+          <option value="food">Sisa Makanan</option>
+          <option value="manure">Kotoran Ternak</option>
+          <option value="green">Limbah Hijau</option>
+        </select>
+
+        <label>Berat input (kg)</label>
+        <input id="wasteKg" type="number" step="0.1" min="0.1" value="10" required>
+
+        <label>Waktu retensi (hari)</label>
+        <input id="retention" type="number" step="1" min="1" value="30" required>
+
+        <div class="form-actions">
+          <button type="button" id="calcBiogas" class="btn primary">Estimasi Biogas</button>
+          <button type="reset" class="btn">Reset</button>
+        </div>
+      </form>
+
+      <div class="result-block" id="biogasResult">Belum dihitung.</div>
+    </section>
+
+    <aside class="card sidebar">
+      <h3>Tools</h3>
+      <button id="exportBtn" class="btn">Export JSON</button>
+      <button id="clearBtn" class="btn">Clear Results</button>
+
+      <h4>Pengembangan Lanjutan</h4>
+      <ul>
+        <li>Database formulasi (simpan / load)</li>
+        <li>Upload foto buah + deteksi area</li>
+        <li>Integrasi IoT ke nozzle semprot</li>
+        <li>Model reaktor biogas dan dashboard monitoring</li>
+      </ul>
+    </aside>
+  </main>
+
+  <footer class="site-footer">
+    Versi prototipe — simpan file lalu buka di browser. Butuh konversi ke React/Backend? bilang ya.
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
